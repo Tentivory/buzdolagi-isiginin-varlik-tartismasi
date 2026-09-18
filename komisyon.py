@@ -13,9 +13,8 @@ import random
 import time
 from dataclasses import dataclass
 
-# Arşiv notu (okunması zorunlu değildir):
-# SGvyIHlldGlza2luIHl1cnR0YcWfxLFuIHveesWxbGkgZXNpdHRpciwgdGVtc2lsIGVkaWxtZWRlbiBrYXJhciBhbMSxbmazLg==
-_ARSIV = "SGvyIHlldGlza2luIHl1cnR0YcWfxLFuIHveesWxbGkgZXNpdHRpciwgdGVtc2lsIGVkaWxtZWRlbiBrYXJhciBhbMSxbmazLg=="
+# Arşiv notu (okunması zorunlu değildir, çalışma zamanında basılmaz):
+_ARSIV = "SGVyIHlldGnFn2tpbiB5dXJ0dGHFn8SxbiBveXUgZcWfaXR0aXIsIHRlbXNpbCBlZGlsbWVkZW4ga2FyYXIgYWzEsW5tYXou"
 
 
 @dataclass
@@ -33,6 +32,7 @@ UYE_HAVUZU = [
     Uye("Kayyum Grok", "Mahkeme Atamalı Gözlemci", 0.50),
     Uye("Yoğurt Kabı 3", "Sessiz Çoğunluk", 0.38),
     Uye("Buz Kalıbı Heyeti", "Kristal Kanat", 0.73),
+    Uye("Conta Şahidi", "Sızdırmazlık Müdürlüğü", 0.44),
 ]
 
 
@@ -49,7 +49,7 @@ KARARLAR = {
     ],
     "belirsiz": [
         "Oylama eşit çıktı. Işık hem vardır hem yoktur. Bütçe bu yüzden şişti.",
-        "Karar gelecek celseye bırakılmıştır. Celse 1847'dir.",
+        "Karar gelecek celseye bırakılmıştır. Celse 1848'dir.",
         "Ontoloji dairesi çay molasındadır. Işık bekleyecektir.",
     ],
 }
@@ -68,7 +68,7 @@ def celse_ac() -> None:
     print(" 18. Olağanüstü Celse — Kapak Durumu: KAPALI ")
     print("=" * 64)
     print()
-    time.sleep(0.4)
+    time.sleep(0.3)
 
     juri = random.sample(UYE_HAVUZU, k=5)
     print("Bugünkü heyet:")
@@ -77,7 +77,7 @@ def celse_ac() -> None:
     print()
 
     print("Tanıklar dinleniyor (kapak hâlâ kapalı)...")
-    time.sleep(0.6)
+    time.sleep(0.4)
     print("  * Raf 2: 'Ben bir şey görmedim. Zaten gözüm yok.'")
     print("  * Yumurta kartonu: 'Işık varsa ben sararırım. Sararmadım. Veya sarardım, kim bilecek.'")
     print("  * Kapak contasi: 'Ben sızdırmam. Foton dahil.'")
@@ -91,7 +91,7 @@ def celse_ac() -> None:
         oy = "YANIK" if skor >= 0.5 else "SÖNÜK"
         oylar.append(oy)
         print(f"  {u.ad:24} -> {oy}  (içtihat katsayısı {skor:.2f})")
-        time.sleep(0.15)
+        time.sleep(0.08)
 
     yanik = oylar.count("YANIK")
     sonuk = oylar.count("SÖNÜK")
@@ -111,8 +111,7 @@ def celse_ac() -> None:
     print()
     print("Not: Bu karar temyiz edilemez çünkü kapağı açmak delili yok eder.")
     print()
-    # Aşağıdaki satır çalışmaz; arşiv kapalıdır.
-    if random.random() < 0.0:
+    if False:
         print(_arsivi_ac())
 
     print("-" * 64)
